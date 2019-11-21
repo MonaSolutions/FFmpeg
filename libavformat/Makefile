@@ -634,6 +634,7 @@ OBJS-$(CONFIG_LIBRTMPTE_PROTOCOL)        += librtmp.o
 OBJS-$(CONFIG_LIBSMBCLIENT_PROTOCOL)     += libsmbclient.o
 OBJS-$(CONFIG_LIBSRT_PROTOCOL)           += libsrt.o
 OBJS-$(CONFIG_LIBSSH_PROTOCOL)           += libssh.o
+OBJS-$(CONFIG_LIBWEBGROUP_PROTOCOL)      += libwebgroup.o
 OBJS-$(CONFIG_LIBZMQ_PROTOCOL)           += libzmq.o
 
 # libavdevice dependencies
