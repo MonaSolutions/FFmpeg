@@ -240,6 +240,7 @@ extern AVInputFormat  ff_mmf_demuxer;
 extern AVOutputFormat ff_mmf_muxer;
 extern AVInputFormat  ff_mov_demuxer;
 extern AVOutputFormat ff_mov_muxer;
+extern AVOutputFormat ff_mona_muxer;
 extern AVOutputFormat ff_mp2_muxer;
 extern AVInputFormat  ff_mp3_demuxer;
 extern AVOutputFormat ff_mp3_muxer;
