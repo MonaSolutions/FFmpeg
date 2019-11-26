@@ -6347,7 +6347,7 @@ enabled libvpx            && {
 }
 
 enabled libwavpack        && require libwavpack wavpack/wavpack.h WavpackOpenFileOutput  -lwavpack
-enabled libwebgroup       && require_pkg_config libwebgroup libwebgroup libwebgroup.h wg_open
+enabled libwebgroup       && require_pkg_config libwebgroup libwebgroup libwebgroup.h wg_start
 enabled libwebp           && {
     enabled libwebp_encoder      && require_pkg_config libwebp "libwebp >= 0.2.0" webp/encode.h WebPGetEncoderVersion
     enabled libwebp_anim_encoder && check_pkg_config libwebp_anim_encoder "libwebpmux >= 0.4.0" webp/mux.h WebPAnimEncoderOptionsInit; }
