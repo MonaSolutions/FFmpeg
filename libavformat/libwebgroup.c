@@ -36,7 +36,8 @@
 
 typedef struct WGContext {
     const AVClass *class;
-    unsigned int publication;
+    broadcaster* publication;
+	WGConfig config;
 
 } WGContext;
 
@@ -52,11 +53,8 @@ static int libwg_open(URLContext *h, const char *uri, int flags)
     char buf[256];
     int ret = 0;
 
-    if (wg_open(NULL) == 0) {
-        return AVERROR_UNKNOWN;
-    }
-
-    if ((c->publication = wg_publish(h->filename))==0)
+	wg_start(&c->config);
+    if ((c->publication = wg_broadcast(h->filename))==0)
         return AVERROR_UNKNOWN;
     return 0;
 }
@@ -84,7 +82,7 @@ static int libwg_write(URLContext *h, const uint8_t *buf, int size)
 {
     WGContext *c = h->priv_data;
     int ret;
-    Tag tag;
+    //Tag tag;
 
     /*if (!(h->flags & AVIO_FLAG_NONBLOCK)) {
         ret = libsrt_network_wait_fd_timeout(h, s->eid, s->fd, 1, h->rw_timeout, &h->interrupt_callback);
@@ -93,7 +91,7 @@ static int libwg_write(URLContext *h, const uint8_t *buf, int size)
     }*/
 
     av_log(h, AV_LOG_INFO, "size : %d\n", size); 
-    ret = wg_publish_media(c->publication, &tag, buf, size);
+    ret = wg_broadcast_write(c->publication, buf, size);
     return size;
 }
 
@@ -101,9 +99,9 @@ static int libwg_close(URLContext *h)
 {
     WGContext *c = h->priv_data;
 
-    wg_publish_close(c->publication);
+	wg_broadcast_close(c->publication);
 
-    wg_close();
+	wg_stop();
 
     return 0;
 }
