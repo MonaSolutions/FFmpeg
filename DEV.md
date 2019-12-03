@@ -7,5 +7,5 @@ To compile ffmpeg :
 make
 
 To test webgroup :
-./ffmpeg -re -i ./Sintel.ts -c copy -f flv wg://0.0.0.0:1234/test
+./ffmpeg -re -i ./Sintel.ts -c copy -f mona wg://0.0.0.0:1234/test
 
