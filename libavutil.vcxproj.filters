@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\FFmpegWG\libavutil\xtea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\adler32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aes_ctr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aes_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\attributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\audio_fifo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avassert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avstring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\base64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\blowfish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\bprint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\buffer_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\camellia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\cast5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\channel_layout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\color_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\colorspace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\cpu_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\crc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\cuda_check.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\des.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\dict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\downmix_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\dynarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\encryption_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\eval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ffmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ffversion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\fifo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\fixed_dsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\float_dsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hdr_dynamic_metadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hmac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_cuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_cuda_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_d3d11va.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_drm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_dxva2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_mediacodec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_opencl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_qsv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_vaapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_vdpau.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_videotoolbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\imgutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\imgutils_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\integer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\intfloat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\intmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\lfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\libm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\lls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\lzo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mastering_display_metadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mathematics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mem_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\motion_vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\murmur3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\opt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\parseutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\pca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\pixdesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\pixelutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\pixfmt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\random_seed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\rational.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\rc4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\replaygain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\reverse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ripemd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\samplefmt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\sha.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\sha512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\slicethread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat_ieee754.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat_tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\spherical.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\stereo3d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tablegen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\threadmessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\time_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\timecode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\timestamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\twofish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tx_priv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\wchar_filename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\xga_font_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\neontest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\emms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\intmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\pixelutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\w64xmmtest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\float_dsp_arm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\intmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\neontest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avr32\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\avr32\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\bfin\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\bfin\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\asmdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\generic_macros_msa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\libm_mips.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\mmiutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\float_dsp_altivec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\float_dsp_vsx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\util_altivec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\sh4\bswap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FFmpegWG\libavutil\tomi\intreadwrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FFmpegWG\libavutil\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\aes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\aes_ctr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\audio_fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\avsscanf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\avstring.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\base64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\blowfish.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\bprint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\buffer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\camellia.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\cast5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\channel_layout.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\color_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\crc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\des.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\dict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\display.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\downmix_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\encryption_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\eval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\file_open.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\fixed_dsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\float_dsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\frame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hdr_dynamic_metadata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hmac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_cuda.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_d3d11va.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_drm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_dxva2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_mediacodec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_opencl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_qsv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_vaapi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_vdpau.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_videotoolbox.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\imgutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\integer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\intmath.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\lfg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\lls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\log2_tab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\lzo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\mastering_display_metadata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\mathematics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\md5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\murmur3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\parseutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\pca.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\pixdesc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\pixelutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\random_seed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\rational.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\rc4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\reverse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\ripemd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\samplefmt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\sha.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\sha512.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\slicethread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\spherical.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\stereo3d.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\threadmessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\timecode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\twofish.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_double.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_float.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_template.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\xga_font_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\xtea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\aarch64\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\aarch64\float_dsp_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\fixed_dsp_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\float_dsp_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\imgutils_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\lls_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\pixelutils_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_arm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_neon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_vfp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\mips\float_dsp_mips.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_altivec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_vsx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\aes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\aes_ctr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\audio_fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\avstring.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\base64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\blowfish.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\bprint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\camellia.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cast5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\color_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cpu_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\crc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\des.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\dict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\display.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\encryption_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\eval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hmac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hwdevice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\imgutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\integer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lfg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lzo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\md5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\murmur3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\parseutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pca.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixdesc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixelutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixfmt_best.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\random_seed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\rational.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\ripemd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\sha.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\sha512.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\softfloat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\tea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\twofish.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\utf8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\xtea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\FFmpegWG\libavutil\x86\cpuid.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\emms.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\fixed_dsp.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\float_dsp.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\imgutils.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\lls.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\pixelutils.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\x86inc.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\FFmpegWG\libavutil\x86\x86util.asm">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

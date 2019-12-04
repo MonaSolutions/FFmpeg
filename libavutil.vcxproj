@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C20EDF42-344D-4AA4-8869-436CB5C6C5BB}</ProjectGuid>
+    <RootNamespace>libavutil</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\cpu.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\neontest.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aarch64\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\adler32.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aes.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aes_ctr.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\aes_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\cpu.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\float_dsp_arm.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\intmath.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\neontest.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\arm\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\attributes.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\audio_fifo.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avassert.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avconfig.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avr32\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avr32\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avstring.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\avutil.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\base64.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\bfin\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\bfin\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\blowfish.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\bprint.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\buffer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\buffer_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\camellia.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\cast5.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\channel_layout.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\colorspace.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\color_utils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\common.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\cpu.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\cpu_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\crc.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\cuda_check.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\des.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\dict.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\display.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\downmix_info.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\dynarray.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\encryption_info.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\error.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\eval.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ffmath.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ffversion.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\fifo.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\file.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\fixed_dsp.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\float_dsp.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\frame.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hash.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hdr_dynamic_metadata.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hmac.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_cuda.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_cuda_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_d3d11va.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_drm.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_dxva2.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_mediacodec.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_opencl.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_qsv.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_vaapi.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_vdpau.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\hwcontext_videotoolbox.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\imgutils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\imgutils_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\integer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\intfloat.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\intmath.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\lfg.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\libm.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\lls.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\log.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\lzo.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\macros.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mastering_display_metadata.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mathematics.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\md5.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mem.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mem_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\asmdefs.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\generic_macros_msa.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\libm_mips.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\mips\mmiutils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\motion_vector.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\murmur3.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\opt.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\parseutils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\pca.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\pixdesc.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\pixelutils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\pixfmt.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\cpu.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\float_dsp_altivec.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\float_dsp_vsx.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ppc\util_altivec.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\qsort.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\random_seed.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\rational.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\rc4.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\replaygain.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\reverse.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\ripemd.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\samplefmt.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\sh4\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\sha.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\sha512.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\slicethread.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat_ieee754.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\softfloat_tables.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\spherical.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\stereo3d.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tablegen.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tea.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\thread.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\threadmessage.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\time.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\timecode.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\timestamp.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\time_internal.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tomi\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tree.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\twofish.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tx.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\tx_priv.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\version.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\wchar_filename.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\asm.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\bswap.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\cpu.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\emms.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\intmath.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\intreadwrite.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\pixelutils.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\timer.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\x86\w64xmmtest.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\xga_font_data.h" />
+    <ClInclude Include="..\FFmpegWG\libavutil\xtea.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FFmpegWG\libavutil\aarch64\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\aarch64\float_dsp_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\adler32.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\aes.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\aes_ctr.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_arm.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_neon.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\arm\float_dsp_init_vfp.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\audio_fifo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\avsscanf.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\avstring.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\base64.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\blowfish.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\bprint.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\buffer.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\camellia.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\cast5.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\channel_layout.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\color_utils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\crc.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\des.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\dict.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\display.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\downmix_info.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\encryption_info.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\error.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\eval.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\fifo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\file.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\file_open.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\fixed_dsp.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\float_dsp.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\frame.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hash.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hdr_dynamic_metadata.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hmac.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_cuda.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_d3d11va.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_drm.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_dxva2.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_mediacodec.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_opencl.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_qsv.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_vaapi.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_vdpau.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\hwcontext_videotoolbox.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\imgutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\integer.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\intmath.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\lfg.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\lls.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\log.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\log2_tab.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\lzo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\mastering_display_metadata.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\mathematics.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\md5.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\mem.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\mips\float_dsp_mips.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\murmur3.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\opt.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\parseutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\pca.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\pixdesc.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\pixelutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_altivec.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\ppc\float_dsp_vsx.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\random_seed.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\rational.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\rc4.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\reverse.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\ripemd.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\samplefmt.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\sha.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\sha512.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\slicethread.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\spherical.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\stereo3d.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tea.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\adler32.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\aes.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\aes_ctr.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\audio_fifo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\avstring.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\base64.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\blowfish.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\bprint.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\camellia.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cast5.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\color_utils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\cpu_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\crc.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\des.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\dict.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\display.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\encryption_info.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\error.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\eval.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\fifo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\file.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hash.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hmac.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\hwdevice.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\imgutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\integer.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lfg.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lls.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\log.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\lzo.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\md5.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\murmur3.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\opt.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\parseutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pca.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixdesc.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixelutils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\pixfmt_best.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\random_seed.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\rational.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\ripemd.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\sha.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\sha512.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\softfloat.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\tea.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\tree.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\twofish.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\utf8.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tests\xtea.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\threadmessage.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\time.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\timecode.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tree.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\twofish.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tx.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_double.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_float.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\tx_template.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\utils.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\cpu.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\fixed_dsp_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\float_dsp_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\imgutils_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\lls_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\x86\pixelutils_init.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\xga_font_data.c" />
+    <ClCompile Include="..\FFmpegWG\libavutil\xtea.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\FFmpegWG\libavutil\x86\cpuid.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\emms.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\fixed_dsp.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\float_dsp.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\imgutils.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\lls.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\pixelutils.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\x86inc.asm" />
+    <None Include="..\FFmpegWG\libavutil\x86\x86util.asm" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
