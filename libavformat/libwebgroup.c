@@ -109,14 +109,15 @@ static int libwg_open(URLContext *h, const char *uri, int flags)
     return ret;
 }*/
 
-/*
-@param read_pb pointer to the reading buffer
-@param available pointer to the remaining data in the reading buffer
-@param to_read current size read from the reading buffer
-@param buf pointer to the buffer to write (size is in c->write_size)
-@return size written, 0 if nothing happend (nothing to flush), <0 if an error occured
-*/
-static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, int* available, int to_read) {
+/**
+ * @param[in,out] read_pb pointer to the reading buffer
+ * @param[in] buf pointer to the buffer to write (size is in c->write_size)
+ * @param[out] available pointer to the remaining size in the reading buffer
+ * @param[in] to_read current size read from the reading buffer
+ * @param[in] ref buffer is passed by reference and will be destroyed by libwebgroup
+ * @return size written, 0 if nothing happend (nothing to flush), <0 if an error occured
+ */
+static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, int* available, int to_read, unsigned short ref) {
 	WGContext *c = h->priv_data;
 	int frame = 0, type = (c->write_size > 1) ? (buf[0] >> 6) : 0;
 	int ret = 0;
@@ -130,6 +131,8 @@ static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, in
 		c->audio_size = c->write_size;
 		c->audio_config = av_malloc(c->audio_size);
 		memcpy(c->audio_config, buf, c->audio_size);
+		if (ref)
+			av_free(buf); // release buffer before exiting
 		av_log(h, AV_LOG_DEBUG, "Audio config received, size : %d\n", c->audio_size);
 	}
 	else if (frame == MONA_FRAME_CONFIG) {
@@ -139,6 +142,8 @@ static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, in
 		c->video_size = c->write_size;
 		c->video_config = av_malloc(c->video_size);
 		memcpy(c->video_config, buf, c->video_size);
+		if (ref)
+			av_free(buf); // release buffer before exiting
 		av_log(h, AV_LOG_DEBUG, "Video config received, size : %d\n", c->video_size);
 	}
 	else {
@@ -157,13 +162,13 @@ static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, in
 					ret = AVERROR_UNKNOWN;
 				is_key = 0;
 			}
-			if (ret >= 0 && !wg_broadcast_write(c->publication, buf, c->write_size, is_key))
+			if (ret >= 0 && !wg_broadcast_write(c->publication, buf, (ref? -c->write_size : c->write_size), is_key))
 				ret = AVERROR_UNKNOWN;
 		}
 		else {
 			if ((type == MONA_TYPE_VIDEO && !c->video_config) || (type == MONA_TYPE_AUDIO && !c->audio_config))
 				av_log(h, AV_LOG_WARNING, "%s Packet ignored, no config received for now\n", (type == MONA_TYPE_VIDEO)? "Video" : "Audio");
-			else if (!wg_broadcast_write(c->publication, buf, c->write_size, 0))
+			else if (!wg_broadcast_write(c->publication, buf, (ref ? -c->write_size : c->write_size), 0))
 				ret = AVERROR_UNKNOWN;
 		}
 	}
@@ -221,8 +226,7 @@ static int libwg_write(URLContext *h, const uint8_t *buf, int size)
 			avio_write(c->write_pb, read_pb.buf_ptr, to_read);
 			avio_close_dyn_buf(c->write_pb, &write_buffer);
 			
-			flush += (ret = libwg_broadcast(h, &read_pb, write_buffer, &available, to_read));
-			av_free(write_buffer); // release buffer before exiting
+			flush += (ret = libwg_broadcast(h, &read_pb, write_buffer, &available, to_read, 1));
 		}
 		else {
 
@@ -241,7 +245,7 @@ static int libwg_write(URLContext *h, const uint8_t *buf, int size)
 				break;
 			}
 
-			flush += (ret = libwg_broadcast(h, &read_pb, read_pb.buf_ptr, &available, c->write_size));
+			flush += (ret = libwg_broadcast(h, &read_pb, read_pb.buf_ptr, &available, c->write_size, 0));
 		}
 		if (ret < 0)
 			return ret;
