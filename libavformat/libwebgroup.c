@@ -55,31 +55,6 @@ static const AVOption libwg_options[] = {
     { NULL }
 };
 
-static int libwg_wait_start(URLContext *h, const char* path, int64_t timeout)
-{
-	WGContext *c = h->priv_data;
-	int64_t wait_start = 0;
-	int ret = 0;
-
-	wg_start(&c->config);
-	while (1) {
-		if ((c->publication = wg_broadcast(path)) != 0)
-			return 0;
-
-		if (ret = av_usleep(POLLING_TIME))
-			return ret;
-
-		if (ff_check_interrupt(&h->interrupt_callback))
-			return AVERROR_EXIT;
-		if (timeout > 0) {
-			if (!wait_start)
-				wait_start = av_gettime_relative();
-			else if (av_gettime_relative() - wait_start > timeout)
-				return AVERROR(ETIMEDOUT);
-		}
-	}
-}
-
 static int libwg_open(URLContext *h, const char *uri, int flags)
 {
 	char proto[8], path[1024], auth[100];
@@ -93,21 +68,11 @@ static int libwg_open(URLContext *h, const char *uri, int flags)
 	if (!strlen(path))
 		return AVERROR(EINVAL);
 
-	return libwg_wait_start(h, path+1, h->rw_timeout); // (+1 to remove '/')
+	wg_start(&c->config);
+	if (!(c->publication = wg_broadcast(path+1)))
+		return AVERROR_UNKNOWN;
+	return 0;
 }
-
-/*static int libwg_read(URLContext *h, uint8_t *buf, int size)
-{
-    WGContext *c = h->priv_data;
-    int ret;
-
-    ret = srt_recvmsg(s->fd, buf, size);
-    if (ret < 0) {
-        ret = libsrt_neterrno(h);
-    }
-
-    return ret;
-}*/
 
 /**
  * @param[in,out] read_pb pointer to the reading buffer
@@ -296,7 +261,6 @@ static const AVClass libwg_class = {
 const URLProtocol ff_libwebgroup_protocol = {
     .name                = "wg",
     .url_open            = libwg_open,
-//    .url_read            = libwg_read,
     .url_write           = libwg_write,
     .url_close           = libwg_close,
     .priv_data_size      = sizeof(struct WGContext),
