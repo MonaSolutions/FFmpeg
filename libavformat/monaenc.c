@@ -58,6 +58,10 @@ static const AVCodecTag mona_audio_codec_ids[] = {
 
 typedef struct MonaContext {
     AVClass *av_class;
+	char	tracks[65535];
+	unsigned char nb_audios;
+	unsigned char nb_videos;
+	//TODO unsigned int nb_datas;
     
 } MonaContext;
 
@@ -201,10 +205,12 @@ fail:
 
 static void mona_write_video_header(AVFormatContext *s, int streamindex, unsigned int frame, int size, int64_t pts, int64_t dts) {
 	AVIOContext *pb = s->pb;
+	MonaContext *mona = s->priv_data;
 	AVCodecParameters *par = s->streams[streamindex]->codecpar;
 	unsigned int compositionOffset = pts - dts;
-	streamindex = 1; // TODO fix this
 
+	streamindex = mona->tracks[streamindex];
+	//av_log(s, AV_LOG_INFO, "Video packet received (frame=%d, time=%ld, size=%d, track=%d)\n", frame, dts, size, streamindex);
 	avio_wb32(pb, (compositionOffset ? (streamindex == 1 ? 8 : 9) : (streamindex == 1 ? 6 : 7)) + size);
 
 	// 11CCCCCC FFFFF0ON [OOOOOOOO OOOOOOOO] [NNNNNNNN] TTTTTTTT TTTTTTTT TTTTTTTT TTTTTTTT
@@ -224,6 +230,7 @@ static void mona_write_video_header(AVFormatContext *s, int streamindex, unsigne
 
 static void mona_write_audio_header(AVFormatContext *s, int streamindex, short isConfig, int size, int64_t ts) {
 	AVIOContext *pb = s->pb;
+	MonaContext *mona = s->priv_data;
 	AVCodecParameters *par = s->streams[streamindex]->codecpar;
 	unsigned short value, index;
 	typedef struct Rate {
@@ -258,7 +265,9 @@ static void mona_write_audio_header(AVFormatContext *s, int streamindex, short i
 		{ 2822400, 24 },
 		{ 5644800, 25 }
 	};
-	streamindex = 1; // TODO fix this
+
+	streamindex = mona->tracks[streamindex];
+	//av_log(s, AV_LOG_INFO, "Audio %s packet received (time=%ld, size=%d, track=%d)\n", isConfig ? "config" : "", ts, size, streamindex);
 	avio_wb32(pb, (streamindex == 1 ? 7 : 8) + size);
 
 	// 10CCCCCC SSSSSSSS RRRRR0IN [NNNNNNNN] TTTTTTTT TTTTTTTT TTTTTTTT TTTTTTTT
@@ -288,7 +297,7 @@ static void mona_write_audio_header(AVFormatContext *s, int streamindex, short i
 	if (streamindex == 1)
 		avio_w8(pb, value);
 	else {
-		avio_w8(pb, value & 1);
+		avio_w8(pb, value | 1);
 		avio_w8(pb, streamindex);
 	}
 	avio_wb32(pb, ts); // in last to be removed easly if protocol has already time info in its protocol header
@@ -337,10 +346,39 @@ static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodec
 
 static int mona_write_header(AVFormatContext *s)
 {
-	int i;
+	MonaContext *mona = s->priv_data;
+	unsigned int streamindex;
 
-	for (i = 0; i < s->nb_streams; i++)
-		mona_write_codec_config(s, i, s->streams[i]->codecpar, 0);
+	for (streamindex = 0; streamindex < s->nb_streams; streamindex++) {
+
+		// generate track mapping frome streamindex to track n°
+		switch (s->streams[streamindex]->codecpar->codec_type) {
+		case AVMEDIA_TYPE_VIDEO:
+			if (mona->nb_videos >= 255 || streamindex >= 65535) {
+				av_log(s, AV_LOG_ERROR, "video track limit exceeded\n");
+				return AVERROR(EINVAL);
+			}
+			else
+				mona->tracks[streamindex] = ++mona->nb_videos;
+			break;
+		case AVMEDIA_TYPE_AUDIO:
+			if (mona->nb_audios >= 255 || streamindex >= 65535) {
+				av_log(s, AV_LOG_ERROR, "audio track limit exceeded\n");
+				return AVERROR(EINVAL);
+			}
+			else
+				mona->tracks[streamindex] = ++mona->nb_audios;
+			break;
+		case AVMEDIA_TYPE_SUBTITLE:
+		case AVMEDIA_TYPE_DATA:
+			av_log(s, AV_LOG_WARNING, "data type and subtitle are not handled for now\n");
+			break;
+		default:
+			return AVERROR(EINVAL);
+		}
+
+		mona_write_codec_config(s, streamindex, s->streams[streamindex]->codecpar, 0);
+	}
    
     return 0;
 }
@@ -399,7 +437,7 @@ static int mona_write_packet(AVFormatContext *s, AVPacket *pkt)
 		break;
 	case AVMEDIA_TYPE_SUBTITLE:
 	case AVMEDIA_TYPE_DATA:
-		av_log(s, AV_LOG_WARNING, "data type and subtitle are not handled for now");
+		//av_log(s, AV_LOG_WARNING, "data type and subtitle are not handled for now\n");
 		break;
 	default:
 		return AVERROR(EINVAL);
