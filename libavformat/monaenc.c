@@ -113,96 +113,6 @@ static int mona_init(struct AVFormatContext *s)
     return 0;
 }
 
-/* Rewriting of ff_isom_write_avcc with the following corrections :
- - write NALU size on 4 bytes
- - remove 5 bytes before SPS and PPS
- - remove SPS and PPS size
-*/
-static int mona_write_avcc(AVIOContext *pb, const uint8_t *data, int len)
-{
-	AVIOContext *sps_pb = NULL, *pps_pb = NULL;
-	uint8_t *buf = NULL, *end, *start = NULL;
-	uint8_t *sps = NULL, *pps = NULL;
-	uint32_t sps_size = 0, pps_size = 0;
-	int ret, nb_sps = 0, nb_pps = 0;
-
-	if (len <= 6)
-		return AVERROR_INVALIDDATA;
-
-	/* check for H.264 start code */
-	if (AV_RB32(data) != 0x00000001 &&
-		AV_RB24(data) != 0x000001) {
-		avio_write(pb, data, len);
-		return 0;
-	}
-
-	ret = ff_avc_parse_nal_units_buf(data, &buf, &len);
-	if (ret < 0)
-		return ret;
-	start = buf;
-	end = buf + len;
-
-	ret = avio_open_dyn_buf(&sps_pb);
-	if (ret < 0)
-		goto fail;
-	ret = avio_open_dyn_buf(&pps_pb);
-	if (ret < 0)
-		goto fail;
-
-	/* look for sps and pps */
-	while (end - buf > 4) {
-		uint32_t size;
-		uint8_t nal_type;
-		size = FFMIN(AV_RB32(buf), end - buf - 4);
-		buf += 4;
-		nal_type = buf[0] & 0x1f;
-
-		if (nal_type == 7) { /* SPS */
-			nb_sps++;
-			if (size > UINT16_MAX || nb_sps >= H264_MAX_SPS_COUNT) {
-				ret = AVERROR_INVALIDDATA;
-				goto fail;
-			}
-			avio_wb32(sps_pb, size);
-			avio_write(sps_pb, buf, size);
-		}
-		else if (nal_type == 8) { /* PPS */
-			nb_pps++;
-			if (size > UINT16_MAX || nb_pps >= H264_MAX_PPS_COUNT) {
-				ret = AVERROR_INVALIDDATA;
-				goto fail;
-			}
-			avio_wb32(pps_pb, size);
-			avio_write(pps_pb, buf, size);
-		}
-
-		buf += size;
-	}
-	sps_size = avio_close_dyn_buf(sps_pb, &sps);
-	pps_size = avio_close_dyn_buf(pps_pb, &pps);
-
-	if (sps_size < 6 || !pps_size) {
-		ret = AVERROR_INVALIDDATA;
-		goto fail;
-	}
-
-	//avio_w8(pb, 0xe0 | nb_sps); /* 3 bits reserved (111) + 5 bits number of sps */
-	avio_write(pb, sps, sps_size);
-	//avio_w8(pb, nb_pps); /* number of pps */
-	avio_write(pb, pps, pps_size);
-
-fail:
-	if (!sps)
-		avio_close_dyn_buf(sps_pb, &sps);
-	if (!pps)
-		avio_close_dyn_buf(pps_pb, &pps);
-	av_free(sps);
-	av_free(pps);
-	av_free(start);
-
-	return ret;
-}
-
 static void mona_write_video_header(AVFormatContext *s, int streamindex, unsigned int frame, int size, int64_t pts, int64_t dts) {
 	AVIOContext *pb = s->pb;
 	MonaContext *mona = s->priv_data;
@@ -330,11 +240,23 @@ static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodec
 		avio_write(pb, par->extradata, par->extradata_size);
 	}
 	else {
-		int pos = avio_tell(pb);
+		int size = par->extradata_size;
+		uint8_t *data = par->extradata, *ptr = NULL, *annexb = NULL;
+		int pos = avio_tell(pb), ret = 0;
 		mona_write_video_header(s, streamindex, MONA_FRAME_CONFIG, 0, dts, dts);
 
 		// SPS + PPS
-		mona_write_avcc(pb, par->extradata, par->extradata_size);
+		if (AV_RB32(data) != 0x00000001 && AV_RB24(data) != 0x000001) {
+			// remove 5 bytes of header and write the size on 32 bits
+			ret = ff_avc_write_annexb_extradata(data, &annexb, &size);
+			data = annexb;
+		}
+		// remove NALU
+		if (!ret && !ff_avc_parse_nal_units_buf(data, &ptr, &size)) {
+			avio_write(pb, ptr? ptr : data, size);
+			av_free(ptr);
+		}
+		av_free(annexb);
 
 		// patch size
 		data_size = avio_tell(pb) - pos;
