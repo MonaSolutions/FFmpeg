@@ -61,7 +61,7 @@ typedef struct MonaContext {
 	char	tracks[65535];
 	unsigned char nb_audios;
 	unsigned char nb_videos;
-	//TODO unsigned int nb_datas;
+	unsigned char nb_datas;
     
 } MonaContext;
 
@@ -213,6 +213,23 @@ static void mona_write_audio_header(AVFormatContext *s, int streamindex, short i
 	avio_wb32(pb, ts); // in last to be removed easly if protocol has already time info in its protocol header
 }
 
+static void mona_write_data_header(AVFormatContext *s, int streamindex, int size) {
+	AVIOContext *pb = s->pb;
+	MonaContext *mona = s->priv_data;
+
+	// DATA => 0NTTTTTT [NNNNNNNN]
+	/// N = track
+	/// T = type
+	streamindex = mona->tracks[streamindex];
+	avio_wb32(pb, (!streamindex? 1 : 2) + size);
+	if (!streamindex)
+		avio_w8(pb, MONA_TYPE_TEXT & 0x3F);
+	else {
+		avio_w8(pb, 0x40 | (MONA_TYPE_TEXT & 0x3F));
+		avio_w8(pb, streamindex);
+	}
+}
+
 static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodecParameters* par, uint64_t dts) {
 	int64_t data_size;
 	AVIOContext *pb = s->pb;
@@ -293,7 +310,12 @@ static int mona_write_header(AVFormatContext *s)
 			break;
 		case AVMEDIA_TYPE_SUBTITLE:
 		case AVMEDIA_TYPE_DATA:
-			av_log(s, AV_LOG_WARNING, "data type and subtitle are not handled for now\n");
+			if (mona->nb_datas >= 255 || streamindex >= 65535) {
+				av_log(s, AV_LOG_ERROR, "data track limit exceeded\n");
+				return AVERROR(EINVAL);
+			}
+			else
+				mona->tracks[streamindex] = ++mona->nb_datas;
 			break;
 		default:
 			return AVERROR(EINVAL);
@@ -359,7 +381,7 @@ static int mona_write_packet(AVFormatContext *s, AVPacket *pkt)
 		break;
 	case AVMEDIA_TYPE_SUBTITLE:
 	case AVMEDIA_TYPE_DATA:
-		//av_log(s, AV_LOG_WARNING, "data type and subtitle are not handled for now\n");
+		mona_write_data_header(s, pkt->stream_index, size);
 		break;
 	default:
 		return AVERROR(EINVAL);

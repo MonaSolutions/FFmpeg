@@ -74,4 +74,16 @@ enum {
         MONA_CODEC_MP38K_FLV = 14 // just usefull for FLV!
 };
 
+// Data types
+enum {
+		MONA_TYPE_UNKNOWN = 0,
+		MONA_TYPE_AMF = 1,
+		MONA_TYPE_AMF0 = 2,
+		MONA_TYPE_JSON = 3,
+		MONA_TYPE_XMLRPC = 4,
+		MONA_TYPE_QUERY = 5,
+		MONA_TYPE_TEXT = 6,
+		MONA_TYPE_MEDIA = 0xFF, // just used in intern in Mona!
+};
+
 #endif /* AVFORMAT_MONA_H */
