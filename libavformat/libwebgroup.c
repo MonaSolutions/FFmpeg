@@ -49,9 +49,11 @@ typedef struct WGContext {
 
 } WGContext;
 
+#define D AV_OPT_FLAG_DECODING_PARAM
+#define E AV_OPT_FLAG_ENCODING_PARAM
 #define OFFSET(x) offsetof(WGContext, x)
 static const AVOption libwg_options[] = {
-	// TODO: add WSS option
+	{ "wss",            "Enable WSS port",      OFFSET(config.ssl),        AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, .flags = D|E },
     { NULL }
 };
 
