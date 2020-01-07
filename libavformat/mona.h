@@ -24,7 +24,7 @@
 
 #define MONA_CODEC_RAW                          0
 
-enum { // Keep UInt8 to allow easly a compression + String::ToNumber usage!
+enum {
         MONA_TYPE_NONE = 0,
         MONA_TYPE_DATA = 1,
         MONA_TYPE_AUDIO = 2, // => 10, to have the first bit to 1 and be compatible with Media::Pack

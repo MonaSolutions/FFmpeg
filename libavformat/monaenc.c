@@ -113,15 +113,12 @@ static int mona_init(struct AVFormatContext *s)
     return 0;
 }
 
-static void mona_write_video_header(AVFormatContext *s, int streamindex, unsigned int frame, int size, int64_t pts, int64_t dts) {
+static void mona_write_video_header(AVFormatContext *s, AVCodecParameters *par, int track, unsigned int frame, int size, int64_t pts, int64_t dts) {
 	AVIOContext *pb = s->pb;
-	MonaContext *mona = s->priv_data;
-	AVCodecParameters *par = s->streams[streamindex]->codecpar;
 	unsigned int compositionOffset = pts - dts;
 
-	streamindex = mona->tracks[streamindex];
-	//av_log(s, AV_LOG_INFO, "Video packet received (frame=%d, time=%ld, size=%d, track=%d)\n", frame, dts, size, streamindex);
-	avio_wb32(pb, (compositionOffset ? (streamindex == 1 ? 8 : 9) : (streamindex == 1 ? 6 : 7)) + size);
+	//av_log(s, AV_LOG_INFO, "Video packet received (frame=%d, time=%ld, size=%d, track=%d)\n", frame, dts, size, track);
+	avio_wb32(pb, (compositionOffset ? (track == 1 ? 8 : 9) : (track == 1 ? 6 : 7)) + size);
 
 	// 11CCCCCC FFFFF0ON [OOOOOOOO OOOOOOOO] [NNNNNNNN] TTTTTTTT TTTTTTTT TTTTTTTT TTTTTTTT
 	/// C = codec
@@ -130,18 +127,16 @@ static void mona_write_video_header(AVFormatContext *s, int streamindex, unsigne
 	/// N = track
 	/// T = time
 	avio_w8(pb, (MONA_TYPE_VIDEO << 6) | (ff_codec_get_tag(mona_video_codec_ids, par->codec_id) & 0x3F));
-	avio_w8(pb, (frame << 3) | (compositionOffset ? 2 : 0) | (streamindex != 1 ? 1 : 0));
+	avio_w8(pb, (frame << 3) | (compositionOffset ? 2 : 0) | (track != 1 ? 1 : 0));
 	if (compositionOffset)
 		avio_wb16(pb, compositionOffset);
-	if (streamindex != 1)
-		avio_w8(pb, streamindex);
+	if (track != 1)
+		avio_w8(pb, track);
 	avio_wb32(pb, dts); // in last to be removed easly if protocol has already time info in its protocol header
 }
 
-static void mona_write_audio_header(AVFormatContext *s, int streamindex, short isConfig, int size, int64_t ts) {
+static void mona_write_audio_header(AVFormatContext *s, AVCodecParameters *par, int track, short isConfig, int size, int64_t ts) {
 	AVIOContext *pb = s->pb;
-	MonaContext *mona = s->priv_data;
-	AVCodecParameters *par = s->streams[streamindex]->codecpar;
 	unsigned short value, index;
 	typedef struct Rate {
 		unsigned int rate;
@@ -176,9 +171,8 @@ static void mona_write_audio_header(AVFormatContext *s, int streamindex, short i
 		{ 5644800, 25 }
 	};
 
-	streamindex = mona->tracks[streamindex];
-	//av_log(s, AV_LOG_INFO, "Audio %s packet received (time=%ld, size=%d, track=%d)\n", isConfig ? "config" : "", ts, size, streamindex);
-	avio_wb32(pb, (streamindex == 1 ? 7 : 8) + size);
+	//av_log(s, AV_LOG_INFO, "Audio %s packet received (time=%ld, size=%d, track=%d)\n", isConfig ? "config" : "", ts, size, track);
+	avio_wb32(pb, (track == 1 ? 7 : 8) + size);
 
 	// 10CCCCCC SSSSSSSS RRRRR0IN [NNNNNNNN] TTTTTTTT TTTTTTTT TTTTTTTT TTTTTTTT
 	/// C = codec
@@ -204,35 +198,34 @@ static void mona_write_audio_header(AVFormatContext *s, int streamindex, short i
 
 	if (isConfig)
 		value |= 2;
-	if (streamindex == 1)
+	if (track == 1)
 		avio_w8(pb, value);
 	else {
 		avio_w8(pb, value | 1);
-		avio_w8(pb, streamindex);
+		avio_w8(pb, track);
 	}
 	avio_wb32(pb, ts); // in last to be removed easly if protocol has already time info in its protocol header
 }
 
-static void mona_write_data_header(AVFormatContext *s, int streamindex, int size) {
+static void mona_write_data_header(AVFormatContext *s, int track, unsigned char type, int size) {
 	AVIOContext *pb = s->pb;
-	MonaContext *mona = s->priv_data;
 
 	// DATA => 0NTTTTTT [NNNNNNNN]
 	/// N = track
 	/// T = type
-	streamindex = mona->tracks[streamindex];
-	avio_wb32(pb, (!streamindex? 1 : 2) + size);
-	if (!streamindex)
-		avio_w8(pb, MONA_TYPE_TEXT & 0x3F);
+	avio_wb32(pb, (!track? 1 : 2) + size);
+	if (!track)
+		avio_w8(pb, type & 0x3F);
 	else {
-		avio_w8(pb, 0x40 | (MONA_TYPE_TEXT & 0x3F));
-		avio_w8(pb, streamindex);
+		avio_w8(pb, 0x40 | (type & 0x3F));
+		avio_w8(pb, track);
 	}
 }
 
 static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodecParameters* par, uint64_t dts) {
 	int64_t data_size;
 	AVIOContext *pb = s->pb;
+	MonaContext *mona = s->priv_data;
 
 	if (par->codec_id != AV_CODEC_ID_AAC && par->codec_id != AV_CODEC_ID_H264
 		&& par->codec_id != AV_CODEC_ID_MPEG4)
@@ -240,7 +233,7 @@ static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodec
 
 	if (par->codec_id == AV_CODEC_ID_AAC) {
 		
-		mona_write_audio_header(s, streamindex, 1, par->extradata_size ? par->extradata_size : 2, dts);
+		mona_write_audio_header(s, par, mona->tracks[streamindex], 1, par->extradata_size ? par->extradata_size : 2, dts);
 		// TODO: it's strange that without this patch the stream goes bad on player side, Mona issue?
 		if (!par->extradata_size) {
 			int rateIndex;
@@ -260,7 +253,7 @@ static void mona_write_codec_config(AVFormatContext* s, int streamindex, AVCodec
 		int size = par->extradata_size;
 		uint8_t *data = par->extradata, *ptr = NULL, *annexb = NULL;
 		int pos = avio_tell(pb), ret = 0;
-		mona_write_video_header(s, streamindex, MONA_FRAME_CONFIG, 0, dts, dts);
+		mona_write_video_header(s, par, mona->tracks[streamindex], MONA_FRAME_CONFIG, 0, dts, dts);
 
 		// SPS + PPS
 		if (AV_RB32(data) != 0x00000001 && AV_RB24(data) != 0x000001) {
@@ -287,26 +280,33 @@ static int mona_write_header(AVFormatContext *s)
 {
 	MonaContext *mona = s->priv_data;
 	unsigned int streamindex;
+	unsigned int track;
+	char properties[2048];
+	char track_st[255];
+	AVDictionaryEntry *lang;
+	char* audios_lang[255];
+	char* datas_lang[255];
 
-	for (streamindex = 0; streamindex < s->nb_streams; streamindex++) {
+	for (streamindex = 0; streamindex < s->nb_streams; ++streamindex) {
 
-		// generate track mapping frome streamindex to track n°
+		// Generate track mapping frome streamindex to track n°
 		switch (s->streams[streamindex]->codecpar->codec_type) {
 		case AVMEDIA_TYPE_VIDEO:
 			if (mona->nb_videos >= 255 || streamindex >= 65535) {
 				av_log(s, AV_LOG_ERROR, "video track limit exceeded\n");
 				return AVERROR(EINVAL);
 			}
-			else
-				mona->tracks[streamindex] = ++mona->nb_videos;
+			mona->tracks[streamindex] = ++mona->nb_videos;
 			break;
 		case AVMEDIA_TYPE_AUDIO:
 			if (mona->nb_audios >= 255 || streamindex >= 65535) {
 				av_log(s, AV_LOG_ERROR, "audio track limit exceeded\n");
 				return AVERROR(EINVAL);
 			}
-			else
-				mona->tracks[streamindex] = ++mona->nb_audios;
+			// extract language metadata
+			lang = av_dict_get(s->streams[streamindex]->metadata, "language", NULL, 0);
+			audios_lang[mona->nb_audios] = lang ? lang->value : NULL;
+			mona->tracks[streamindex] = ++mona->nb_audios;
 			break;
 		case AVMEDIA_TYPE_SUBTITLE:
 		case AVMEDIA_TYPE_DATA:
@@ -314,8 +314,9 @@ static int mona_write_header(AVFormatContext *s)
 				av_log(s, AV_LOG_ERROR, "data track limit exceeded\n");
 				return AVERROR(EINVAL);
 			}
-			else
-				mona->tracks[streamindex] = ++mona->nb_datas;
+			lang = av_dict_get(s->streams[streamindex]->metadata, "language", NULL, 0);
+			datas_lang[mona->nb_datas] = lang ? lang->value : NULL;
+			mona->tracks[streamindex] = ++mona->nb_datas;
 			break;
 		default:
 			return AVERROR(EINVAL);
@@ -323,22 +324,43 @@ static int mona_write_header(AVFormatContext *s)
 
 		mona_write_codec_config(s, streamindex, s->streams[streamindex]->codecpar, 0);
 	}
+
+	// Write properties in JSON format
+	strncat(properties, "[{", sizeof(properties)-1);
+	for (track = 0; track < mona->nb_audios && track < mona->nb_datas; ++track) {
+		if (track > 0)
+			strncat(properties, ",", sizeof(properties) - 1);
+		strncat(properties, "\"", sizeof(properties) - 1);
+		snprintf(track_st, sizeof(track_st), "%d", track +1);
+		strncat(properties, track_st, sizeof(properties) - 1);
+		strncat(properties, "\":{", sizeof(properties) - 1);
+		if (track < mona->nb_audios) {
+			strncat(properties, "\"audioLang\":\"", sizeof(properties) - 1);
+			strncat(properties, audios_lang[track] ? audios_lang[track] : "und", sizeof(properties) - 1);
+			strncat(properties, "\"", sizeof(properties) - 1);
+		}
+		if (track < mona->nb_datas) {
+			if (track < mona->nb_audios)
+				strncat(properties, ",", sizeof(properties) - 1);
+			strncat(properties, "\"textLang\":\"", sizeof(properties) - 1);
+			strncat(properties, datas_lang[track] ? datas_lang[track] : "und", sizeof(properties) - 1);
+			strncat(properties, "\"", sizeof(properties) - 1);
+		}
+		strncat(properties, "}", sizeof(properties) - 1);
+	}
+	strncat(properties, "}]", sizeof(properties) - 1);
+
+	av_log(s, AV_LOG_INFO, "writing properties : %s\n", properties);
+	mona_write_data_header(s, 0, MONA_TYPE_JSON, strlen(properties));
+	avio_write(s->pb, properties, strlen(properties));
    
     return 0;
 }
 
-/*static int mona_write_trailer(AVFormatContext *s)
-{
-    AVIOContext *pb = s->pb;
-    MonaContext *wg = s->priv_data;
-	av_log(s, AV_LOG_INFO, "mona_write_trailer\n");
-
-    return 0;
-}*/
-
 static int mona_write_packet(AVFormatContext *s, AVPacket *pkt)
 {
     AVIOContext *pb      = s->pb;
+	MonaContext *mona = s->priv_data;
     AVCodecParameters *par = s->streams[pkt->stream_index]->codecpar;
 	int size = pkt->size;
 	uint8_t *data = NULL;
@@ -372,16 +394,17 @@ static int mona_write_packet(AVFormatContext *s, AVPacket *pkt)
 
 	switch (par->codec_type) {
 	case AVMEDIA_TYPE_VIDEO:
-		mona_write_video_header(s, pkt->stream_index, 
+		mona_write_video_header(s, par, mona->tracks[pkt->stream_index], 
 			pkt->flags & AV_PKT_FLAG_KEY ? MONA_FRAME_KEY : MONA_FRAME_INTER, 
 			size, pkt->pts, pkt->dts);
 		break;
 	case AVMEDIA_TYPE_AUDIO:
-		mona_write_audio_header(s, pkt->stream_index, 0, size, pkt->dts);
+		mona_write_audio_header(s, par, mona->tracks[pkt->stream_index], 0, size, pkt->dts);
 		break;
 	case AVMEDIA_TYPE_SUBTITLE:
+		mona_write_data_header(s, mona->tracks[pkt->stream_index], MONA_TYPE_TEXT, size);
+		break;
 	case AVMEDIA_TYPE_DATA:
-		mona_write_data_header(s, pkt->stream_index, size);
 		break;
 	default:
 		return AVERROR(EINVAL);
@@ -429,7 +452,6 @@ AVOutputFormat ff_mona_muxer = {
     .init           = mona_init,
     .write_header   = mona_write_header,
     .write_packet   = mona_write_packet,
-    //.write_trailer  = mona_write_trailer,
     .check_bitstream= mona_check_bitstream,
     .codec_tag      = (const AVCodecTag* const []) {
                           mona_video_codec_ids, mona_audio_codec_ids, 0
