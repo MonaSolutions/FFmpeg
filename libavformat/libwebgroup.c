@@ -46,6 +46,8 @@ typedef struct WGContext {
 	int				audio_size;
 	uint8_t *		video_config;
 	int				video_size;
+	uint8_t *		properties;
+	int				properties_size;
 
 } WGContext;
 
@@ -89,7 +91,18 @@ static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, un
 	if (type == MONA_TYPE_VIDEO)
 		frame = buf[1] >> 3;
 	
-	if (type == MONA_TYPE_AUDIO && buf[2] & 2) {
+	if (!type && c->write_size > 1 && ((buf[0] & 0x3F) == MONA_TYPE_JSON)) { // metadatas properties
+		// save metadatas
+		if (c->properties)
+			av_free(c->properties);
+		c->properties_size = c->write_size;
+		c->properties = av_malloc(c->properties_size);
+		memcpy(c->properties, buf, c->properties_size);
+		if (ref)
+			av_free(buf); // release buffer before exiting
+		av_log(h, AV_LOG_INFO, "Properties received : %.*s\n", c->write_size, (char*)buf+1);
+	}
+	else if (type == MONA_TYPE_AUDIO && buf[2] & 2) {
 		// save audio config
 		if (c->audio_config)
 			av_free(c->audio_config);
@@ -117,7 +130,12 @@ static int libwg_broadcast(URLContext *h, AVIOContext* read_pb, uint8_t *buf, un
 		// If the packet is a Video Key frame we send the config packets and set isKey to True
 		if (frame == MONA_FRAME_KEY) {
 			unsigned short is_key = 1;
-			if (c->video_config) {
+			if (c->properties) {
+				if (!wg_broadcast_write(c->publication, c->properties, c->properties_size, is_key))
+					ret = AVERROR_UNKNOWN;
+				is_key = 0;
+			}
+			if (ret >= 0 && c->video_config) {
 				if (!wg_broadcast_write(c->publication, c->video_config, c->video_size, is_key))
 					ret = AVERROR_UNKNOWN;
 				is_key = 0;
