@@ -326,12 +326,13 @@ static int mona_write_header(AVFormatContext *s)
 	}
 
 	// Write properties in JSON format
-	strncat(properties, "[{", sizeof(properties)-1);
-	for (track = 0; track < mona->nb_audios && track < mona->nb_datas; ++track) {
+	sprintf(properties, "[{");
+	for (track = 0; track < mona->nb_audios || track < mona->nb_datas; ++track) {
+		snprintf(track_st, sizeof(track_st), "%d", track + 1);
+
 		if (track > 0)
 			strncat(properties, ",", sizeof(properties) - 1);
 		strncat(properties, "\"", sizeof(properties) - 1);
-		snprintf(track_st, sizeof(track_st), "%d", track +1);
 		strncat(properties, track_st, sizeof(properties) - 1);
 		strncat(properties, "\":{", sizeof(properties) - 1);
 		if (track < mona->nb_audios) {
