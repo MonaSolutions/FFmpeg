@@ -73,7 +73,7 @@ static int libwg_open(URLContext *h, const char *uri, int flags)
 		return AVERROR(EINVAL);
 
 	wg_start(&c->config);
-	if (!(c->publication = wg_broadcast(path+1)))
+	if (!(c->publication = wg_broadcast(path+1, c->config.ssl)))
 		return AVERROR_UNKNOWN;
 	return 0;
 }
